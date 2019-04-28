@@ -1,0 +1,20 @@
+{
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "O": "ServerOrg",
+      "OU": "ServerOrgUnit",
+      "L": "Shanghai",
+      "ST": "Shanghai",
+      "C": "CN"
+    }
+  ],
+  "CN": "Server App",
+  "hosts": [
+    "127.0.0.1",
+    "localhost"
+  ]
+}

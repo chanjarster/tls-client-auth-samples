@@ -1,0 +1,16 @@
+{
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "O": "ClientOrg",
+      "OU": "ClientOrgUnit",
+      "L": "Shanghai",
+      "ST": "Shanghai",
+      "C": "CN"
+    }
+  ],
+  "CN": "Client App"
+}
