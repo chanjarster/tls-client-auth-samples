@@ -1,4 +1,4 @@
-package me.chanjar;
+package me.chanjar.hc;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -18,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
-public class ServerCertIssuedByUnknownCAEnableServerAuth {
+public class UnknownCAEnableServerAuth {
 
   public static void main(String[] args)
       throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, UnrecoverableKeyException,

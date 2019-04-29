@@ -1,4 +1,4 @@
-package me.chanjar;
+package me.chanjar.hc;
 
 
 import org.apache.http.HttpEntity;
@@ -19,7 +19,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
-public class ServerCertIssuedByKnownCA {
+public class KnownCA {
 
   public static void main(String[] args)
       throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, UnrecoverableKeyException,

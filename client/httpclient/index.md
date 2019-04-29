@@ -2,7 +2,7 @@
 
 ## Server证书不是权威CA签发，请求时不做TLS服务端认证
 
-[ServerCertIssuedByUnknownCADisableServerAuth.java](src/main/java/me/chanjar/ServerCertIssuedByUnknownCADisableServerAuth.java)
+[UnknownCADisableServerAuth.java](src/main/java/me/chanjar/hc/UnknownCADisableServerAuth.java)
 
 ```java
 SSLContext sslcontext = SSLContexts.custom()
@@ -27,7 +27,7 @@ CloseableHttpClient httpclient = HttpClients.custom()
 
 ## Server证书不是权威CA签发，请求时做TLS服务端认证
 
-[ServerCertIssuedByUnknownCAEnableServerAuth.java](src/main/java/me/chanjar/ServerCertIssuedByUnknownCAEnableServerAuth.java)
+[UnknownCAEnableServerAuth.java](src/main/java/me/chanjar/hc/UnknownCAEnableServerAuth.java)
 
 ```bash
 SSLContext sslcontext = SSLContexts.custom()
@@ -49,7 +49,7 @@ CloseableHttpClient httpclient = HttpClients.custom()
 
 ## 如果Server证书是权威CA签发
 
-[ServerCertIssuedByKnownCA.java](src/main/java/me/chanjar/ServerCertIssuedByKnownCA.java)
+[KnownCA.java](src/main/java/me/chanjar/hc/KnownCA.java)
 
 ```java
 SSLContext sslcontext = SSLContexts.custom()
