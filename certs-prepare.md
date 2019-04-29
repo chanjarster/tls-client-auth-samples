@@ -79,6 +79,14 @@ openssl pkcs12 -export \
 
 生成PKCS #8私钥文件的时候，输入`server-key123`作为密码。
 
+### 合并证书和私钥
+
+有些Server（比如Haproxy）要求把证书和私钥合并（前后顺序无所谓）在一个文件里，用下列命令创建：
+
+```bash
+cat cert.pem cert-key.pem > cert-cert-key.pem
+```
+
 ### 创建Keystore
 
 某些Java服务端需要使用PKCS #12 keystore而不是直接使用PEM文件。因此需要生成：
@@ -152,6 +160,7 @@ ca.pem            # CA证书 (X.509格式，PEM编码）
 cert-key.pem      # 私钥 (PKCS #1格式，PEM编码)
 cert-key.p8.pem   # 私钥 ，密码 server-key123 (PKCS #8格式，PEM编码)
 cert.pem          # 证书 (X.509格式，PEM编码）
+cert-cert-key.pem # cert.pem + cert-key.pem的合并文件
 server.keystore   # KeyStore，密码 server123（PKCS #12格式）
 server.truststore # TrustStore，密码 serverts123（PKCS #12格式）
 ```

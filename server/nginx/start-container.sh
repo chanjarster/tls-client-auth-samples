@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker run -d \
-  --rm 
+  --rm \
   --name tls-nginx \
   -v $(pwd)/../../certs:/certs \
   -v $(pwd)/default.conf:/etc/nginx/conf.d/default.conf \
