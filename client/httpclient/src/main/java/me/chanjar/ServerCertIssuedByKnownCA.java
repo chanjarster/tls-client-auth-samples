@@ -2,7 +2,6 @@ package me.chanjar;
 
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -20,17 +19,13 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
-public class HttpClientSample {
+public class ServerCertIssuedByKnownCA {
 
   public static void main(String[] args)
       throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, UnrecoverableKeyException,
       KeyManagementException {
 
     SSLContext sslcontext = SSLContexts.custom()
-        .loadTrustMaterial(
-            new File("../../certs/client/client.truststore"),
-            "clientts123".toCharArray()
-        )
         .loadKeyMaterial(
             new File("../../certs/client/client.keystore"),
             "client123".toCharArray(),
@@ -45,7 +40,7 @@ public class HttpClientSample {
         .setSSLSocketFactory(sslsf)
         .build();
 
-    HttpGet httpGet = new HttpGet("https://localhost:8443");
+    HttpGet httpGet = new HttpGet("https://baidu.com");
     CloseableHttpResponse response = httpclient.execute(httpGet);
     try {
       System.out.println(response.getStatusLine());
