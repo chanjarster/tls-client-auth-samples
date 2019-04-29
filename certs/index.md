@@ -1,5 +1,7 @@
 # 证书准备工作
 
+本项目使用[cfssl][cfssl]生成CA证书及私钥，你也可以使用自己的工具来生成。
+
 ## Client
 
 到`certs/client`目录下操作。
@@ -66,6 +68,8 @@ openssl pkcs12 -export \
 会提示你`Enter Export Password:`，你就输入`client123`作为keystore的密码。
 
 ## Server
+
+如果你的Server证书由知名CA签发那么可以跳过“创建CA”和”创建证书”环节。
 
 到`certs/server`目录下操作。
 

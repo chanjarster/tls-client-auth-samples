@@ -1,11 +1,10 @@
 # TLS客户端认证的例子
+
 本项目提供TLS客户端认证的例子，包括Client和Server。
 
 ## 准备工作
 
-本项目已经在`certs`目录下准备好了Client和Server需要的证书、私钥、Keystore和Truststore。如果你想自己动手做一遍可以看[证书准备工作](certs-prepare.md)，你也可以跳过本步骤直接看下面的文章
-
-本项目使用[cfssl](cfssl)生成CA证书及私钥，你也可以使用自己的工具来生成。
+本项目已经在`certs`目录下准备好了Client和Server需要的证书、私钥、Keystore和Truststore。如果你想自己动手做一遍可以看[证书准备工作](certs/index.md)，你也可以跳过本步骤直接看下面的文章。
 
 ## 如何使用例子
 
