@@ -1,6 +1,6 @@
 # 证书准备工作
 
-本项目使用[cfssl][cfssl]生成CA证书及私钥，你也可以使用自己的工具来生成。
+本项目使用[CFSSL][cfssl]（[CFSSL的介绍][cfssl-intro]）生成CA证书及私钥，你也可以使用自己的工具来生成。
 
 ## Client
 
@@ -172,3 +172,4 @@ server.truststore # TrustStore，密码 serverts123（PKCS #12格式）
 
 
 [cfssl]: https://github.com/cloudflare/cfssl
+[cfssl-intro]: https://blog.cloudflare.com/introducing-cfssl/
