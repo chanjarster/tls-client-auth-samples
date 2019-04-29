@@ -1,11 +1,10 @@
-package me.chanjar.hc;
+package me.chanjar.client.hc;
 
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustAllStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
@@ -20,14 +19,13 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
-public class UnknownCADisableServerAuth {
+public class KnownCA {
 
   public static void main(String[] args)
       throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, UnrecoverableKeyException,
       KeyManagementException {
 
     SSLContext sslcontext = SSLContexts.custom()
-        .loadTrustMaterial(TrustAllStrategy.INSTANCE)
         .loadKeyMaterial(
             new File("../../certs/client/client.keystore"),
             "client123".toCharArray(),
@@ -42,7 +40,7 @@ public class UnknownCADisableServerAuth {
         .setSSLSocketFactory(sslsf)
         .build();
 
-    HttpGet httpGet = new HttpGet("https://localhost:8443");
+    HttpGet httpGet = new HttpGet("https://baidu.com");
     CloseableHttpResponse response = httpclient.execute(httpGet);
     try {
       System.out.println(response.getStatusLine());

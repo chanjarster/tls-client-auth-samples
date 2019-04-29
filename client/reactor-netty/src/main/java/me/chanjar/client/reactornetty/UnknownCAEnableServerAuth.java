@@ -1,20 +1,19 @@
-package me.chanjar.reactornetty;
+package me.chanjar.client.reactornetty;
 
 import io.netty.handler.ssl.SslContextBuilder;
-import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.tcp.SslProvider;
 
 import java.io.File;
 
-public class UnknownCADisableServerAuth {
+public class UnknownCAEnableServerAuth {
 
   public static void main(String[] args) {
 
     HttpClient httpClient = HttpClient.create().secure(sslContextSpec -> {
 
       SslContextBuilder sslContextBuilder = SslContextBuilder.forClient();
-      sslContextBuilder.trustManager(InsecureTrustManagerFactory.INSTANCE);
+      sslContextBuilder.trustManager(new File("../../certs/server/ca.pem"));
       sslContextBuilder
           .keyManager(
               new File("../../certs/client/cert.pem"),

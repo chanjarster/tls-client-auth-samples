@@ -1,4 +1,4 @@
-package me.chanjar.hc;
+package me.chanjar.client.hc;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;

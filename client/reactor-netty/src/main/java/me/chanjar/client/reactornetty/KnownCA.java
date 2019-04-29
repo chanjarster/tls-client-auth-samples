@@ -1,4 +1,4 @@
-package me.chanjar.reactornetty;
+package me.chanjar.client.reactornetty;
 
 import io.netty.handler.ssl.SslContextBuilder;
 import reactor.netty.http.client.HttpClient;

@@ -2,7 +2,7 @@
 
 ## Server证书不是权威CA签发，请求时不做TLS服务端认证
 
-[UnknownCADisableServerAuth.java](src/main/java/me/chanjar/reactornetty/UnknownCADisableServerAuth.java)
+[UnknownCADisableServerAuth.java](src/main/java/me/chanjar/client/reactornetty/UnknownCADisableServerAuth.java)
 
 ```java
 HttpClient httpClient = HttpClient.create().secure(sslContextSpec -> {
@@ -25,7 +25,7 @@ HttpClient httpClient = HttpClient.create().secure(sslContextSpec -> {
 
 ## Server证书不是权威CA签发，请求时做TLS服务端认证
 
-[UnknownCAEnableServerAuth.java](src/main/java/me/chanjar/reactornetty/UnknownCAEnableServerAuth.java)
+[UnknownCAEnableServerAuth.java](src/main/java/me/chanjar/client/reactornetty/UnknownCAEnableServerAuth.java)
 
 ```bash
 HttpClient httpClient = HttpClient.create().secure(sslContextSpec -> {
@@ -48,7 +48,7 @@ HttpClient httpClient = HttpClient.create().secure(sslContextSpec -> {
 
 ## 如果Server证书是权威CA签发
 
-[KnownCA.java](src/main/java/me/chanjar/reactornetty/KnownCA.java)
+[KnownCA.java](src/main/java/me/chanjar/client/reactornetty/KnownCA.java)
 
 ```java
 HttpClient httpClient = HttpClient.create().secure(sslContextSpec -> {
