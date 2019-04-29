@@ -24,6 +24,6 @@
 * [Tomcat](server/tomcat/index.md)
 * [Nginx](server/nginx/index.md)
 * [Haproxy](server/haproxy/index.md)
-* Jetty
+* [Jetty](server/jetty/index.md)
 * Reactor Netty
 * Netty
