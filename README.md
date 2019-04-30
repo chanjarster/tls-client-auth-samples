@@ -16,6 +16,7 @@
 * [Postman](client/postman/index.md)
 * [HttpClient](client/httpclient/index.md)
 * [Reactor Netty](client/reactor-netty/index.md)
+* [Spring Boot - RestTemplate](client/spring-boot/index.md)
 * Netty
 
 ## Server例子
