@@ -142,9 +142,93 @@ keytool -importcert \
 
 会提示你输入密钥库口令，你就输入`serverts123`。
 
+## 回收证书
+
+当CA签发的证书私钥泄漏时，CA可以签发CRL（Certificate Revocation Lists）给到认证方，CRL文件中包含被回收公钥证书的Serial Number，认证方将拒绝这些公钥证书的使用。所谓认证方对于TLS Server Auth来说是Client，对于TLS Client Auth来说是Server。
+
+下面讲解制作CRL的步骤：
+
+1. 得到被泄漏证书的Serial Number：
+  ```bash
+  $ openssl x509 -in cert.pem -serial -noout
+  serial=25B62B8418FFFA7623A74D9761548260F8F956A9
+  ```
+1. 将Serial Number从16进制转成10进制：
+  ```bash
+  $ serial=25B62B8418FFFA7623A74D9761548260F8F956A9; echo "obase=10; ibase=16; $serial" | bc
+  215295184925412722622991490163352171181392877225
+  ```
+1. 将Serial Number写到文件中`to-be-revoked-serial-nums.txt`
+1. 生成CRL：
+  ```bash
+  $ cfssl gencrl to-be-revoked-serial-nums.txt ca.pem ca-key.pem > crl.pem
+  ```
+
+得到的`crl.pem`并非正确格式，还得修改一下：
+1. 将base64字符串按照每行64个字符换一下行
+2. 添加`-----BEGIN X509 CRL-----`头和`-----END X509 CRL-----`尾
+
+修改前的示例：
+
+```txt
+MIICCjCB8wIBATANBgkqhkiG9w0BAQsFADBzMQswCQYDVQQGEwJDTjERMA8GA1UECBMIU2hhbmdoYWkxETAPBgNVBAcTCFNoYW5naGFpMRIwEAYDVQQKEwlDbGllbnRPcmcxFjAUBgNVBAsTDUNsaWVudE9yZ1VuaXQxEjAQBgNVBAMTCUNsaWVudCBDQRcNMTkwNTAyMDYyMjE0WhcNMTkwNTA5MDYyMjE0WjAnMCUCFEXmkzoNae+4xiw42A/SlZ8mDKJ0Fw0xOTA1MDIwNjIyMTRaoCMwITAfBgNVHSMEGDAWgBSURr+jN0cD6yd4w/2qu8OYiVMJzTANBgkqhkiG9w0BAQsFAAOCAQEAecoJE3Pag/eWxDyfA83RZshr2NHuE8MzG/+CD0z12/Wyo24ZQCgQ8mHgbh2OSOFz3kIntUHihm+UAnQYaVaVeMts7bXGm0iMUOxFcb2cnNnHQoJ8QLr19VnEzvR2ozU15Kg09axk7TVT6Cl2lyhKmUvTaZskMHbkX6qVtMtipUuYyD2vU9rPtdenlfThr1ZiTPF5yv/GYkrpcF6mXQjXeHyOJb4SeTZeiHTwX2LwMnxpu8vRq+0EQxVVB1zZX26NwHyNHlmPTm/qMuUS+4MU7/aANHgDPw1+WtYEa4HKZzAz6VFfyNIGwy1UBJTW2steitdHsdFkL2Tugmb2R4fyzQ==
+```
+
+修改后的示例：
+
+```txt
+-----BEGIN X509 CRL-----
+MIICCjCB8wIBATANBgkqhkiG9w0BAQsFADBzMQswCQYDVQQGEwJDTjERMA8GA1UE
+CBMIU2hhbmdoYWkxETAPBgNVBAcTCFNoYW5naGFpMRIwEAYDVQQKEwlDbGllbnRP
+cmcxFjAUBgNVBAsTDUNsaWVudE9yZ1VuaXQxEjAQBgNVBAMTCUNsaWVudCBDQRcN
+MTkwNTAyMDYyMjE0WhcNMTkwNTA5MDYyMjE0WjAnMCUCFEXmkzoNae+4xiw42A/S
+lZ8mDKJ0Fw0xOTA1MDIwNjIyMTRaoCMwITAfBgNVHSMEGDAWgBSURr+jN0cD6yd4
+w/2qu8OYiVMJzTANBgkqhkiG9w0BAQsFAAOCAQEAecoJE3Pag/eWxDyfA83RZshr
+2NHuE8MzG/+CD0z12/Wyo24ZQCgQ8mHgbh2OSOFz3kIntUHihm+UAnQYaVaVeMts
+7bXGm0iMUOxFcb2cnNnHQoJ8QLr19VnEzvR2ozU15Kg09axk7TVT6Cl2lyhKmUvT
+aZskMHbkX6qVtMtipUuYyD2vU9rPtdenlfThr1ZiTPF5yv/GYkrpcF6mXQjXeHyO
+Jb4SeTZeiHTwX2LwMnxpu8vRq+0EQxVVB1zZX26NwHyNHlmPTm/qMuUS+4MU7/aA
+NHgDPw1+WtYEa4HKZzAz6VFfyNIGwy1UBJTW2steitdHsdFkL2Tugmb2R4fyzQ==
+-----END X509 CRL-----
+```
+
+如果后续要扩充CRL，那么就把新的Serial**追加**到`to-be-revoked-serial-nums.txt`，之后的步骤一样。
+
+## Troubleshooting
+
+查看X.509证书：
+
+```bash
+openssl -x509 -in cert.pem -text -noout
+```
+
+查看私钥文件（PKCS #1、PKCS #8）：
+
+```bash
+openssl rsa -in cert-key.pem -text -noout
+```
+
+查看CRL文件：
+
+```bash
+openssl crl -in crl.pem -text -noout
+```
+
+查看PKCS #12文件：
+
+```bash
+openssl pkcs12 -in client.truststore -nokeys
+```
+
+用Java keytool查看PKCS #12文件：
+
+```bash
+keytool -list -keystore client.keystore
+```
+
 ## 文件清单
 
-### Client
+**certs/client**：
 
 ```txt
 ca-key.pem        # CA私钥 (PKCS #1格式，PEM编码)
@@ -156,7 +240,7 @@ client.keystore   # KeyStore，密码 client123（PKCS #12格式）
 client.truststore # TrustStore，密码 clientts123（PKCS #12格式）
 ```
 
-### Server
+**certs/server**：
 
 ```txt
 ca-key.pem        # CA私钥 (PKCS #1格式，PEM编码)
@@ -168,6 +252,13 @@ cert-cert-key.pem # cert.pem + cert-key.pem的合并文件
 server.keystore   # KeyStore，密码 server123（PKCS #12格式）
 server.truststore # TrustStore，密码 serverts123（PKCS #12格式）
 ```
+
+## 参考资料
+
+* [CFSSL - Github][cfssl]
+* [Introducing CFSSL - CloudFlare's PKI toolkit][cfssl-intro]
+* [Convert Hexadecimal to Decimal in Bash](https://linuxhint.com/convert_hexadecimal_decimal_bash/)
+
 
 
 

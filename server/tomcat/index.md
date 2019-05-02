@@ -23,6 +23,8 @@
 
 提供了docker启动脚本方便测试：[start-container.sh](start-container.sh)。
 
+如果有CRL文件，则在`SSLHostConfig`添加属性`certificateRevocationListFile`指向CRL文件所在路径即可。
+
 参考资料：
 
 * https://tomcat.apache.org/tomcat-8.5-doc/ssl-howto.html
