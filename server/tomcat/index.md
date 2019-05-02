@@ -23,4 +23,7 @@
 
 提供了docker启动脚本方便测试：[start-container.sh](start-container.sh)。
 
-参考资料：https://tomcat.apache.org/tomcat-8.5-doc/ssl-howto.html
+参考资料：
+
+* https://tomcat.apache.org/tomcat-8.5-doc/ssl-howto.html
+* https://tomcat.apache.org/tomcat-8.5-doc/config/http.html#SSL_Support
