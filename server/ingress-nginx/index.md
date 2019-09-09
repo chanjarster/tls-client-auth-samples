@@ -70,6 +70,7 @@ metadata:
   name: kuard
   annotations:
     certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   tls:
   - hosts:
@@ -116,6 +117,7 @@ metadata:
   name: kuard
   annotations:
     certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
     nginx.ingress.kubernetes.io/auth-tls-secret: "<namespace>/ca-secret"
     nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
