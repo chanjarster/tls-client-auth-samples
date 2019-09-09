@@ -129,7 +129,7 @@ keytool -importcert \
 
 ### Server
 
-Server得信任得把Client CA才能够做TLS客户端认证。到`certs/server`目录下执行：
+Server得信任Client CA才能够做TLS客户端认证。到`certs/server`目录下执行：
 
 ```bash
 keytool -importcert \
