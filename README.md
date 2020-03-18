@@ -20,6 +20,7 @@
 * [Reactor Netty](client/reactor-netty/index.md)
 * [Spring Boot - RestTemplate](client/spring-boot/index.md)
 * Spring Cloud Open Feign
+* [go net/http](client/go)
 
 ## Server例子
 
