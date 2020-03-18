@@ -1,6 +1,6 @@
 # Client - Spring Boot RestTemplate
 
-RestTemplate支持多种Http库（见[文档][doc]）这里举例使用HttpClient的例子，所以代码和[HttpClient](../httpclient/index.md)差不多。
+RestTemplate支持多种Http库（见[文档][doc]）这里举例使用HttpClient的例子，所以代码和[HttpClient](../httpclient)差不多。
 
 代码见：[RestTemplateConfiguration.java](src/main/java/me/chanjar/client/springboot/RestTemplateConfiguration.java)
 

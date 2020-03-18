@@ -4,7 +4,7 @@
 
 ## 准备工作
 
-本项目已经在`certs`目录下准备好了Client和Server需要的证书、私钥、Keystore和Truststore。如果你想自己动手做一遍可以看[证书准备工作](certs/index.md)，你也可以跳过本步骤直接看下面的文章。
+本项目已经在`certs`目录下准备好了Client和Server需要的证书、私钥、Keystore和Truststore。如果你想自己动手做一遍可以看[证书准备工作](certs)，你也可以跳过本步骤直接看下面的文章。
 
 ## 如何使用例子
 
@@ -12,25 +12,25 @@
 
 ## Client例子
 
-* [Curl](client/curl/index.md)
-* [Postman](client/postman/index.md)
-* [HttpClient](client/httpclient/index.md)
-* [OkHttp](client/okhttp/index.md)
+* [Curl](client/curl)
+* [Postman](client/postman)
+* [HttpClient](client/httpclient)
+* [OkHttp](client/okhttp)
 * Netty
-* [Reactor Netty](client/reactor-netty/index.md)
-* [Spring Boot - RestTemplate](client/spring-boot/index.md)
+* [Reactor Netty](client/reactor-netty)
+* [Spring Boot - RestTemplate](client/spring-boot)
 * Spring Cloud Open Feign
 * [go net/http](client/go)
 
 ## Server例子
 
-* [Nginx](server/nginx/index.md)
-* [Haproxy](server/haproxy/index.md)
-* [Tomcat](server/tomcat/index.md)
-* [Jetty](server/jetty/index.md)
+* [Nginx](server/nginx)
+* [Haproxy](server/haproxy)
+* [Tomcat](server/tomcat)
+* [Jetty](server/jetty)
 * Netty
-* [Reactor Netty](server/reactor-netty/index.md)
-* [Ingress Nginx](server/ingress-nginx/index.md)
+* [Reactor Netty](server/reactor-netty)
+* [Ingress Nginx](server/ingress-nginx)
 
 ## 对TLS不了解？
 
