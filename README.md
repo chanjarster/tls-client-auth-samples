@@ -20,7 +20,7 @@
 * [Reactor Netty](client/reactor-netty)
 * [Spring Boot - RestTemplate](client/spring-boot)
 * Spring Cloud Open Feign
-* [go net/http](client/go)
+* [Go net/http](client/go)
 
 ## Server例子
 
@@ -31,6 +31,7 @@
 * Netty
 * [Reactor Netty](server/reactor-netty)
 * [Ingress Nginx](server/ingress-nginx)
+* [Go net/http](server/go)
 
 ## 对TLS不了解？
 
