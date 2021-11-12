@@ -6,10 +6,7 @@
 
 ```java
 SSLContext sslcontext = SSLContexts.custom()
-    .loadTrustMaterial(
-        new File("../../certs/client/client.truststore"),
-        "clientts123".toCharArray()
-    )
+    .loadTrustMaterial(TrustAllStrategy.INSTANCE)
     .loadKeyMaterial(
         new File("../../certs/client/client.keystore"),
         "client123".toCharArray(),
@@ -31,7 +28,10 @@ CloseableHttpClient httpclient = HttpClients.custom()
 
 ```bash
 SSLContext sslcontext = SSLContexts.custom()
-    .loadTrustMaterial(TrustAllStrategy.INSTANCE)
+    .loadTrustMaterial(
+        new File("../../certs/client/client.truststore"),
+        "clientts123".toCharArray()
+    )
     .loadKeyMaterial(
         new File("../../certs/client/client.keystore"),
         "client123".toCharArray(),
